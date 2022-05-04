@@ -1,11 +1,11 @@
 #!/bin/bashi
 clear
 # Menu Uptions
-echo "Cloud One File Storage Security - Azure Demo";
+echo "Cloud One File Storage Security - AWS Demo";
 echo "1. Preparing the demo environment.."
 echo "2. Checking the demo environment.."
-echo "3. Uploading a malicious file (eicar.com) to a Azure Blob Storage"
-echo "4. Uploading a normal file (document.txt) to a Azure Blob Storage"
+echo "3. Uploading a malicious file (eicar.com) to a S3 Bucket"
+echo "4. Uploading a normal file (document.txt) to a S3 Bucket"
 echo "5. Checking the results (Post-Scan Action)"
 echo "6. Exit from menu "
 echo -n "Enter your menu choice [1-6]: "
