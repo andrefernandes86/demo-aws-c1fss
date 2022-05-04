@@ -1,6 +1,6 @@
-#!/bin/bashi
+#!/bin/bash
 clear
-# Menu Uptions
+# Menu Options
 echo "Cloud One File Storage Security - AWS Demo";
 echo "1. Preparing the demo environment.."
 echo "2. Checking the demo environment.."
@@ -23,52 +23,46 @@ case $choice in
   1)  echo "You have selected the option 1"
     clear
     echo '-------------------------------------------------------------------------------'  
-    echo ' - Indicate the StorageAccountName used to upload the files used on this demo. '
-    read StorageAccountNameA 
+    echo ' - Indicate the S3 Bucket used to upload the files used on this demo. '
+    read S3BucketA 
     echo ' ' 
-    echo ' - Indicate the ContainerName used to upload files '
-    read ContainerNameA
     echo '-------------------------------------------------------------------------------'  
     clear
-    echo '---------------------------------------------------------------------------------------'  
-    echo ' - Indicate the StorageAccountName used to send the malicious files detected by C1FSS. '
-    read StorageAccountNameB
+    echo '------------------------------------------------------------------------------'  
+    echo ' - Indicate the S3 Bucket used to send the malicious files detected by C1FSS. '
+    read S3BucketB
     echo ' ' 
-    echo ' - Indicate the ContainerName used to upload files '
-    read ContainerNameB
-    echo '---------------------------------------------------------------------------------------'
+    echo '------------------------------------------------------------------------------'
     clear
     echo '----------------------------------------------------------------'  
-    echo ' - Indicate the StorageAccountName used to send the safe files. '
-    read StorageAccountNameC
+    echo ' - Indicate the S3 Bucket used to send the safe files. '
+    read S3BucketC
     echo ' ' 
-    echo ' - Indicate the ContainerName used to upload files '
-    read ContainerNameC
     echo '----------------------------------------------------------------'  
     clear
-    echo '----------------------------------------------------------------------------------------------------'
-    echo 'The files will be uploaded to the StorageAccount/Container '$StorageAccountNameA'/'$ContainerNameA
-    echo 'The malicious files will be moved to the StorageAccount/Container '$StorageAccountNameB'/'$ContainerNameB
-    echo 'The normal files will be moved to the StorageAccount/Container '$StorageAccountNameC'/'$ContainerNameC
-    echo '----------------------------------------------------------------------------------------------------'
+    echo '-------------------------------------------------------------------'
+    echo 'The files will be uploaded to the S3 Bucket '$S3BucketA
+    echo 'The malicious files will be moved to the S3 Bucket '$S3BucketB
+    echo 'The normal files will be moved to the S3 Bucket '$S3BucketC
+    echo '-------------------------------------------------------------------'
     sleep 10
     clear
     echo '----------------------------------------------------------------------------------------'
-    echo 'Checking the following Storage accounts for old files (the old files will be removed)'
+    echo 'Checking the following S3 Buckets for old files (the old files will be removed!)'
     echo '----------------------------------------------------------------------------------------'
-    echo ' Cleaning the Storage Account (Malware Quarantine) '$StorageAccountNameB
-    az storage blob delete -c files -n eicar.com --account-name $StorageAccountNameB
+    echo ' Cleaning the S3 Bucket (MalwareFiles) '$S3BucketB
+    aws s3 rm s3://$S3BucketB/ --recursive
     echo ''
-    echo ' Cleaning the Storage Account (Normal Files) '$StorageAccountNameC
-    az storage blob delete -c files -n document.txt --account-name $StorageAccountNameC
+    echo ' Cleaning the S3 Bucket (NormalFiles) '$S3 BucketC
+    aws s3 rm s3://$S3BucketA/ --recursive
     echo '----------------------------------------------------------------------------------------'
     sleep 10
     clear
-    echo "Cloud One File Storage Security - Azure Demo";
+    echo "Cloud One File Storage Security - AWS Demo";
     echo "1. Preparing the demo environment.."
     echo "2. Checking the demo environment.."
-    echo "3. Uploading a malicious file (eicar.com) to a Azure Blob Storage"
-    echo "4. Uploading a normal file (document.txt) to a Azure Blob Storage"
+    echo "3. Uploading a malicious file (eicar.com) to a S3 Bucket"
+    echo "4. Uploading a normal file (document.txt) to a S3 Bucket"
     echo "5. Checking the results (Post-Scan Action)"
     echo "6. Exit from menu "
     echo -n "Enter your menu choice [1-6]: "
@@ -76,43 +70,31 @@ case $choice in
   # Option 2
   2)  echo "You have selected the option 2"
     clear
-    echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' Listing the content of the StorageAccounts '$StorageAccountNameA', '$StorageAccountNameB' and '$StorageAccountNameC
-    echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameA
-    echo ' CONTAINER: '$ContainerNameA
-    az storage blob list \
-        --account-name $StorageAccountNameA \
-        --container-name $ContainerNameA \
-        --output table \
-        --auth-mode key
+    echo '--------------------------------------------------------------------------------------------'
+    echo ' Listing the content of the StorageAccounts '$S3BucketA', '$S3BucketB' and '$S3BucketC
+    echo '--------------------------------------------------------------------------------------------'
+    echo ' S3 Bucket: '$S3BucketA
+    aws s3 ls s3://$S3BucketA/
+
     echo ' '
-    echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameB
-    echo ' CONTAINER: '$ContainerNameB
-    az storage blob list \
-        --account-name $StorageAccountNameB \
-        --container-name $ContainerNameB \
-        --output table \
-        --auth-mode key
+    echo '--------------------------------------------------------------------------------------------'
+    echo ' S3 Bucket: '$S3BucketB  
+    aws s3 ls s3://$S3BucketB/
+
     echo ' '
-    echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameC
-    echo ' CONTAINER: '$ContainerNameC
-    az storage blob list \
-        --account-name $StorageAccountNameC \
-        --container-name $ContainerNameC \
-        --output table \
-        --auth-mode key
+    echo '--------------------------------------------------------------------------------------------'
+    echo ' S3 Bucket: '$S3BucketC 
+    aws s3 ls s3://$S3BucketC/
+
     echo ' '
-    echo '--------------------------------------------------------------------------------------------------------------------'
+    echo '--------------------------------------------------------------------------------------------'
     sleep 10
     clear
-    echo "Cloud One File Storage Security - Azure Demo";
+    echo "Cloud One File Storage Security - AWS Demo";
     echo "1. Preparing the demo environment.."
     echo "2. Checking the demo environment.."
-    echo "3. Uploading a malicious file (eicar.com) to a Azure Blob Storage"
-    echo "4. Uploading a normal file (document.txt) to a Azure Blob Storage"
+    echo "3. Uploading a malicious file (eicar.com) to a S3 Bucket"
+    echo "4. Uploading a normal file (document.txt) to a S3 Bucket"
     echo "5. Checking the results (Post-Scan Action)"
     echo "6. Exit from menu "
     echo -n "Enter your menu choice [1-6]: "
@@ -123,36 +105,26 @@ case $choice in
     echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' >> eicar.com
     cat eicar.com
     echo '-------------------------------------------------------------------'
-    echo ' Uploading a Malicious Files to '$StorageAccountNameA
+    echo ' Uploading a Malicious Files to the S3 Bucket '$S3BucketA
     echo '-------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: '$StorageAccountNameA
-    echo ' CONTAINER: '$ContainerNameA
-    az storage blob upload \
-    --account-name afc1demo \
-    --container-name files \
-    --name eicar.com \
-    --file ./eicar.com \
-    --auth-mode key
+    echo ' S3 Bucket: '$S3BucketA
+    aws s3 cp eicar.com s3://$S3BucketA/
+    echo ' '
     echo '------------------------------------------------------------------'
-    echo ' Listing the content of the StorageAccounts '$StorageAccountNameA
+    echo ' Listing the content of the S3 Bucket '$S3BucketA
     echo '------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameA
-    echo ' CONTAINER: '$ContainerNameA
-    az storage blob list \
-        --account-name $StorageAccountNameA \
-        --container-name $ContainerNameA \
-        --output table \
-        --auth-mode key
+    echo ' S3 Bucket: '$S3BucketA
+    aws s3 ls s3://$S3BucketA/
     echo ' '
     echo '------------------------------------------------------------------'
     sleep 10
     rm eicar.com
     clear
-    echo "Cloud One File Storage Security - Azure Demo";
+    echo "Cloud One File Storage Security - AWS Demo";
     echo "1. Preparing the demo environment.."
     echo "2. Checking the demo environment.."
-    echo "3. Uploading a malicious file (eicar.com) to a Azure Blob Storage"
-    echo "4. Uploading a normal file (document.txt) to a Azure Blob Storage"
+    echo "3. Uploading a malicious file (eicar.com) to a S3 Bucket"
+    echo "4. Uploading a normal file (document.txt) to a S3 Bucket"
     echo "5. Checking the results (Post-Scan Action)"
     echo "6. Exit from menu "
     echo -n "Enter your menu choice [1-6]: "
@@ -162,37 +134,27 @@ case $choice in
     clear
     echo 'hello world!' >> document.txt
     cat document.txt
-    echo '-------------------------------------------------------------------'
-    echo ' Uploading a Malicious Files to '$StorageAccountNameA
-    echo '-------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: '$StorageAccountNameA
-    echo ' CONTAINER: '$ContainerNameA
-    az storage blob upload \
-    --account-name afc1demo \
-    --container-name files \
-    --name document.txt \
-    --file ./document.txt \
-    --auth-mode key
+    echo '----------------------------------------------------------'
+    echo ' Uploading a Normal File to the S3 Bucket '$S3BucketA
+    echo '----------------------------------------------------------'
+    echo ' S3 Bucket: '$S3BucketA
+    aws s3 cp document.txt s3://$S3BucketA/
+    echo ' '
     echo '------------------------------------------------------------------'
-    echo ' Listing the content of the StorageAccount '$StorageAccountNameA
+    echo ' Listing the content of the S3 Bucket '$S3BucketA
     echo '------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameA
-    echo ' CONTAINER: '$ContainerNameA
-    az storage blob list \
-        --account-name $StorageAccountNameA \
-        --container-name $ContainerNameA \
-        --output table \
-        --auth-mode key
+    echo ' S3 Bucket: '$S3BucketA
+    aws s3 ls s3://$S3BucketA/
     echo ' '
     echo '------------------------------------------------------------------'
     sleep 10
     rm document.txt
     clear
-    echo "Cloud One File Storage Security - Azure Demo";
+    echo "Cloud One File Storage Security - AWS Demo";
     echo "1. Preparing the demo environment.."
     echo "2. Checking the demo environment.."
-    echo "3. Uploading a malicious file (eicar.com) to a Azure Blob Storage"
-    echo "4. Uploading a normal file (document.txt) to a Azure Blob Storage"
+    echo "3. Uploading a malicious file (eicar.com) to a S3 Bucket"
+    echo "4. Uploading a normal file (document.txt) to a S3 Bucket"
     echo "5. Checking the results (Post-Scan Action)"
     echo "6. Exit from menu "
     echo -n "Enter your menu choice [1-6]: "
@@ -201,50 +163,38 @@ case $choice in
   5)  echo "You have selected the option 5"
     clear
     echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' Listing the content of the StorageAccounts '$StorageAccountNameA', '$StorageAccountNameB' and '$StorageAccountNameC
+    echo ' Listing the content of the S3 Buckets '$S3BucketA', '$S3BucketB' and '$S3BucketC
     echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameA
-    echo ' CONTAINER: '$ContainerNameA
-    az storage blob list \
-        --account-name $StorageAccountNameA \
-        --container-name $ContainerNameA \
-        --output table \
-        --auth-mode key
+    echo ' S3 Bucket: '$S3BucketA
+    aws s3 ls s3://$S3BucketA/
     echo ' '
     echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameB
-    echo ' CONTAINER: '$ContainerNameB
-    az storage blob list \
-        --account-name $StorageAccountNameB \
-        --container-name $ContainerNameB \
-        --output table \
-        --auth-mode key
+    echo ' S3 Bucket: '$S3BucketB
+    aws s3 ls s3://$S3BucketB/
     echo ' '
     echo '--------------------------------------------------------------------------------------------------------------------'
-    echo ' STORAGE ACCOUNT: ' $StorageAccountNameC
-    echo ' CONTAINER: '$ContainerNameC
-    az storage blob list \
-        --account-name $StorageAccountNameC \
-        --container-name $ContainerNameC \
-        --output table \
-        --auth-mode key
+    echo ' S3 Bucket: '$S3BucketC
+    aws s3 ls s3://$S3BucketC/
     echo ' '
     echo '--------------------------------------------------------------------------------------------------------------------'
     sleep 10
     clear
-    echo "Cloud One File Storage Security - Azure Demo";
+    echo "Cloud One File Storage Security - AWS Demo";
     echo "1. Preparing the demo environment.."
     echo "2. Checking the demo environment.."
-    echo "3. Uploading a malicious file (eicar.com) to a Azure Blob Storage"
-    echo "4. Uploading a normal file (document.txt) to a Azure Blob Storage"
+    echo "3. Uploading a malicious file (eicar.com) to a S3 Bucket"
+    echo "4. Uploading a normal file (document.txt) to a S3 Bucket"
     echo "5. Checking the results (Post-Scan Action)"
     echo "6. Exit from menu "
     echo -n "Enter your menu choice [1-6]: "
       echo '';;
   # Option 6
   6)  echo "Quitting ..."
-    az storage blob delete -c files -n eicar.com --account-name $StorageAccountNameB
-    az storage blob delete -c files -n document.txt --account-name $StorageAccountNameC
+    echo ' Cleaning the S3 Bucket (MalwareFiles) '$S3BucketB
+    aws s3 rm s3://$S3BucketB/ --recursive
+    echo ''
+    echo ' Cleaning the S3 Bucket (NormalFiles) '$S3 BucketC
+    aws s3 rm s3://$S3BucketA/ --recursive
       exit;;
   
   # Default Pattern
