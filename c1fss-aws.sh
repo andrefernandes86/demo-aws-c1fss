@@ -53,8 +53,8 @@ case $choice in
     echo ' Cleaning the S3 Bucket (MalwareFiles) '$S3BucketB
     aws s3 rm s3://$S3BucketB/ --recursive
     echo ''
-    echo ' Cleaning the S3 Bucket (NormalFiles) '$S3 BucketC
-    aws s3 rm s3://$S3BucketA/ --recursive
+    echo ' Cleaning the S3 Bucket (NormalFiles) '$S3BucketC
+    aws s3 rm s3://$S3BucketC/ --recursive
     echo '----------------------------------------------------------------------------------------'
     sleep 10
     clear
@@ -193,8 +193,8 @@ case $choice in
     echo ' Cleaning the S3 Bucket (MalwareFiles) '$S3BucketB
     aws s3 rm s3://$S3BucketB/ --recursive
     echo ''
-    echo ' Cleaning the S3 Bucket (NormalFiles) '$S3 BucketC
-    aws s3 rm s3://$S3BucketA/ --recursive
+    echo ' Cleaning the S3 Bucket (NormalFiles) '$S3BucketC
+    aws s3 rm s3://$S3BucketC/ --recursive
       exit;;
   
   # Default Pattern
