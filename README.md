@@ -13,6 +13,10 @@
 
   https://github.com/trendmicro/cloudone-filestorage-plugins/tree/master/post-scan-actions/aws-python-promote-or-quarantine
 
+- Create 3 new S3 Buckets:
+-- $MyName-UploadedFiles (Add the tag [Tag = FSSMonitored	| Value = Yes]
+-- $MyName-MaliciousFiles 
+-- $MyName-NormalFiles
 
 ## 2nd Step
 - Follow the .....
