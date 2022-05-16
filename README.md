@@ -9,9 +9,6 @@
 
   https://github.com/trendmicro/cloudone-filestorage-plugins/tree/master/deployment/aws-python-storage-stack-automation
 
-- Enable the Post-Scan Actions:
-
-  https://github.com/trendmicro/cloudone-filestorage-plugins/tree/master/post-scan-actions/aws-python-promote-or-quarantine
 
 - Create 3 new S3 Buckets:
 
@@ -20,6 +17,13 @@
   -- $MyName-MaliciousFiles 
 
   -- $MyName-NormalFiles
+
+
+- Enable the Post-Scan Actions:
+
+  https://github.com/trendmicro/cloudone-filestorage-plugins/tree/master/post-scan-actions/aws-python-promote-or-quarantine
+  Note: Replace "fss-promote" with "$MyName-NormalFiles" and "fss-quarantine" with "$MyName-MaliciousFiles"
+
 
 ## 2nd Step
 - Follow the .....
