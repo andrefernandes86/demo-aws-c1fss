@@ -26,6 +26,7 @@ __AWS_Requirements:
 - Enable the Post-Scan Actions:
 
   https://github.com/trendmicro/cloudone-filestorage-plugins/tree/master/post-scan-actions/aws-python-promote-or-quarantine
+  
   Note: Replace "fss-promote" with "$MyName-NormalFiles" and "fss-quarantine" with "$MyName-MaliciousFiles"
 
 __C1_Requirements: 
