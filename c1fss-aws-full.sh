@@ -44,7 +44,7 @@ case $choice in
     echo '- Creating the Demo Environment '
     aws cloudformation deploy \
     --stack-name c1fss-demo \
-    --template-file aio.yml \
+    --template-file file://aio.yml \
     --parameter-overrides file://overrides.json \
     echo '----------------------------------------------------------------'  
     clear
