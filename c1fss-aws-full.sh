@@ -40,6 +40,14 @@ case $choice in
     echo ' ' 
     echo '----------------------------------------------------------------'  
     clear
+    echo '----------------------------------------------------------------'  
+    echo '- Creating the Demo Environment '
+    aws cloudformation deploy \
+    --stack-name c1fss-demo \
+    --template-file aio.yml \
+    --parameter-overrides file://overrides.json \
+    echo '----------------------------------------------------------------'  
+    clear
     echo '-------------------------------------------------------------------'
     echo 'The files will be uploaded to the S3 Bucket '$S3BucketA
     echo 'The malicious files will be moved to the S3 Bucket '$S3BucketB
