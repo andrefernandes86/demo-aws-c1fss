@@ -1,0 +1,10 @@
+{
+    "Parameters": {
+      "BucketName": "$S3BucketA"
+      "ReportObjectKey": "True"
+      "ScanOnGetObject": "True"
+      "PromoteBucketName": "$S3BucketC"
+      "QuarantineBucketName": "$S3BucketB"
+      "CloudOneRegion": "trend-us-1"
+    }
+}
